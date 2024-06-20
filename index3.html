@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /* 3) Напишите рекурсивную функцию findElementByClass, которая принимает корневой элемент дерева DOM 
+        и название класса в качестве аргументов и возвращает первый найденный элемент с указанным классом 
+        в этом дереве.*/
+        function findElementByClass(rootElement, className) {
+            // Проверяем, соответствует ли текущий элемент искомому классу
+            if (rootElement.classList.contains(className)) {
+                return rootElement;
+            }
+            // Перебираем всех дочерних элементов
+            for (let i = 0; i < rootElement.children.length; i++) {
+                // Рекурсивно вызываем функцию для каждого дочернего элемента
+                let result = findElementByClass(rootElement.children[i], className);
+                // Если функция вернула не null, значит элемент найден
+                if (result !== null) {
+                    return result;
+                }
+            }
+            // Если элемент не найден, возвращаем null
+            return null;
+        }
+        let elementWithClass = findElementByClass(document.body, 'my-class');
+        if (elementWithClass) {
+            console.log('Элеиент найден:', elementWithClass);
+        } else {
+            console.log('Искомый элемент не найден.');
+        }
+    </script>
+</body>
+
+</html>

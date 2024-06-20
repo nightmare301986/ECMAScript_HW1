@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /* 2) Напишите функцию createCounter, которая создает счетчик и возвращает объект с двумя методами: 
+        increment и decrement. Метод increment должен увеличивать значение счетчика на 1, 
+        а метод decrement должен уменьшать значение счетчика на 1. 
+        Значение счетчика должно быть доступно только через методы объекта, а не напрямую.*/
+        let counter = (function () {
+            let i = 0;
+
+            return {
+                get: function () {
+                    return i;
+                },
+                set: function (val) {
+                    i = val;
+                },
+                increment: function () {
+                    return ++i;
+                },
+                decrement: function () {
+                    return --i;
+                }
+            };
+        })();
+
+        console.log(counter.get());
+        counter.set(6);
+        console.log(counter.increment());
+        console.log(counter.decrement());
+        console.log(counter.increment());
+        console.log(counter.increment());
+    </script>
+</body>
+
+</html>
